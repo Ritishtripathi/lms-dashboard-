@@ -258,9 +258,9 @@ border-radius:5px;
       .search-user-emp{
         height:6vh;
         width:30vw;
-        border-radius:20px;
+        border-radius:15px;
         border:none;
-        background-color:whitesmoke;
+        border:1px solid blueviolet;
         margin-left:43vw;
    
       }
@@ -268,4 +268,37 @@ border-radius:5px;
           margin-left:70vw;
           margin-top:5vh;
       }
-    
+      .search-bar-leave{
+        height:6vh;
+        width:20vw;
+        margin-left:13vw;
+        border-radius:5px;
+        border:1px solid blueviolet;
+      }
+      .search-bar-leave1{
+        height:6vh;
+        width:24vw;
+        margin-left:9vw;
+        border-radius:15px;
+        border:1px solid blueviolet;
+      }
+      .pdf-btn{
+        background-color: blue;
+        border:none;
+        border-radius:5px;
+        height:6vh;
+        width:9vw;
+        color:white;
+        margin-left:56vw;
+        margin-top:3vh;
+      }
+      .pdf-btn1{
+        background-color: blue;
+        border:none;
+        border-radius:5px;
+        height:6vh;
+        width:8vw;
+        color:white;
+        margin-left:2vw;
+        margin-top:3vh;
+      }

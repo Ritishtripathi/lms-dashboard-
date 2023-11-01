@@ -1,5 +1,6 @@
 import React from "react";
 import Header from './Header';
+import Adduser from "./Adduser";
 import Sidebar from './Sidebar';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -63,16 +64,17 @@ function Employee(){
       <Form.Group as={Col} controlId="formGridState">
          User Type*
           <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
+            <option>Employee</option>
+            <option>HR</option>
+            <option>Other</option>
           </Form.Select>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridState">
          Manager
           <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
+            <option>Testing Enginner</option>
+            <option>SE</option>
           </Form.Select>
         </Form.Group>
       </Row>
@@ -103,7 +105,11 @@ function Employee(){
           </Button>
         </Modal.Footer>
       </Modal>
-      </div>
+      </div><br/>
+      <div>
+
+        <Adduser/>
+        </div>
          </div>
          </div>
     )

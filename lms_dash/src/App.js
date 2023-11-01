@@ -8,6 +8,8 @@ import Sidebar from './Pages/Sidebar';
 import Forget from './Pages/Forget';
 import Thank from './Pages/Thank';
 import Employee from './Pages/Employee';
+import Adduser from './Pages/Adduser';
+import Leave from './Pages/Leave';
 function App() {
   return (
     <Router>
@@ -20,6 +22,9 @@ function App() {
         <Route path='/Forget' element={<Forget/>}/>
         <Route path='/Thank' element={<Thank/>}/>
         <Route path='/Employee' element={<Employee/>}/>
+        <Route path='/Adduser' element={<Adduser/>}/>
+        <Route path='/Leave' element={<Leave/>}/>
+
        </Routes>
     </Router>
   );
