@@ -7,6 +7,7 @@ import Header from './Pages/Header';
 import Sidebar from './Pages/Sidebar';
 import Forget from './Pages/Forget';
 import Thank from './Pages/Thank';
+import Employee from './Pages/Employee';
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
         <Route path='/Sidebar' element={<Sidebar/>}/>
         <Route path='/Forget' element={<Forget/>}/>
         <Route path='/Thank' element={<Thank/>}/>
+        <Route path='/Employee' element={<Employee/>}/>
        </Routes>
     </Router>
   );

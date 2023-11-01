@@ -45,13 +45,66 @@ function Dashbord(){
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
           <span className='card-text-dashbord'>0<br/>On leave today</span>
          </div>
-
          </div>
 
-               
+
+
+         {/*admin static models */}
+
+          <div style={{display:'flex'}}>
+           <div className='models-dashbord'>
+            <div style={{display:'flex',marginLeft:'2vw'}}>
+             <h5 style={{marginRight:'25vw'}}>Admin Statistics</h5>
+             <button className='card-button'>Today</button>
+             <button className='card-button'>This week</button>
+             <button className='card-button'>This year</button>
+             </div><hr style={{color:'grey'}}/>
+
+              {/*admin static card */}
+              <div style={{display:'flex'}}>
+              <div className='card-dashbord1'>
+           <span className="icon-dashbord1">
+          <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
+          <span className='card-text-dashbord1'><h5>REPLACEMENT</h5>Employee On Leave<br/>Employee On Request</span>
+          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+         </div>
+            {/*admin static card */}
+         <div className='card-dashbord1'>
+           <span className="icon-dashbord1">
+          <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
+          <span className='card-text-dashbord1'><h5>ANNUAL_LEAVE</h5>Employee On Leave <br/>Employee On Requests</span>
+          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+         </div></div>
+        
+         
+       {/*admin static card */}
+       <div style={{display:'flex'}}>
+         <div className='card-dashbord1'>
+           <span className="icon-dashbord1">
+          <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
+          <span className='card-text-dashbord1'><h5>SICK_LEAVE</h5> Employee On Leave <br/>Employee On Requests</span>
+          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+         </div>
+          {/*admin static card */}
+          <div className='card-dashbord1'>
+           <span className="icon-dashbord1">
+          <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
+          <span className='card-text-dashbord1'><h5>EMERGENCY_LEAVE</h5>Employee On Leave<br/>Employee On Requests</span>
+          <span style={{marginLeft:'4vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+         </div>
+         </div>
+           </div>  
+
+           {/*  deshbord people on week of card */}     
+           <div className='card-of-last'>
+             <h5 style={{margin:'3vh 3vw'}}>People On Weekoff</h5><hr style={{color:'grey'}}/>
+             <button className='btn-dashbord'>Full<br/> Name</button>
+             <button className='btn-dashbord'>From<br/> Date</button>
+             <button className='btn-dashbord'>To<br/> Date</button>
+             <hr style={{color:'grey'}}/>
+           </div>
+           </div>
         </div>
-
-
     </div>
     );
 }
