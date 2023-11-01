@@ -11,14 +11,15 @@ function Header(){
   return(
   <div>
     
-  <Navbar bg="light" data-bs-theme="light" fixed="top">
+  <Navbar bg="light" data-bs-theme="light" fixed="top" style={{height:'10vh'}}>
   <img src={logo} className="header-logo"/>
       <Container>
       <Nav>
             <Nav.Link href="/Dashbord"  className="header-item"><ReplayIcon/></Nav.Link>
             <Nav.Link href="/Dashbord" className="header-item2" >refresh</Nav.Link>
             <Nav.Link href="/Dashbord" className="header-item"><NotificationsIcon/></Nav.Link>
-            <Nav.Link>| Welcome <br/>| www</Nav.Link>
+            <Nav.Link><span style={{height:'height:2vh'}}>|</span></Nav.Link>
+            <Nav.Link>Welcome <br/>www</Nav.Link>
             <Nav.Link><img src={profile} className="p-header-icon"/></Nav.Link>
           </Nav>
       </Container>

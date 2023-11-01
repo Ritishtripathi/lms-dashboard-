@@ -22,6 +22,12 @@ function Employee(){
          <div className="main-container">
             <div style={{display:'flex'}}>
             <h2>Users</h2>
+            <select className="search-bar-leave">
+                    <option>Employee</option>
+                    <option>HR Admin</option>
+                    <option>Admin for Test</option>
+                    <option>Test </option>
+                </select>
             <input className="search-user-emp" type="search" placeholder="Search..."/>
             </div>
             <div>
@@ -29,7 +35,7 @@ function Employee(){
         Add Empolyee
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Add Employee</Modal.Title>
         </Modal.Header>
