@@ -22,7 +22,7 @@ function Leave(){
                 <div style={{display:"flex"}} >
                 <h4>Applied Leave</h4>
                 <select className="search-bar-leave">
-                    <option>--select--</option>
+                    <option>--select--< /option>
                     <option>Rejected</option>
                     <option>Pending</option>
                     <option>Approved</option>
