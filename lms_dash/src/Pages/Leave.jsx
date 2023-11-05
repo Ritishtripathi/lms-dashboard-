@@ -7,7 +7,7 @@ import { useState } from "react";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Adduser from "../Pages/Adduser";
+import TableList from './TableList';
 
 function Leave(){
   const [show, setShow] = useState(false);
@@ -15,14 +15,14 @@ function Leave(){
   const handleShow = () => setShow(true);
 
     return(
-<div>
+          <div>
             <Header/>
               <Sidebar/>
                <div className='main-container'>
                 <div style={{display:"flex"}} >
                 <h4>Applied Leave</h4>
                 <select className="search-bar-leave">
-                    <option>--select--< /option>
+                    <option>--select-- </option>
                     <option>Rejected</option>
                     <option>Pending</option>
                     <option>Approved</option>
@@ -30,7 +30,6 @@ function Leave(){
                 <input className="search-bar-leave1" type="search" placeholder="Search..."/>
                 </div>
                <div>
-              
                 <button className="pdf-btn1">Export to PDF</button>
                 <button className="pdf-btn">Export to XI</button>
                 <button className="pdf-btn" onClick={handleShow}>
@@ -101,7 +100,7 @@ function Leave(){
       </Modal>
     
                </div><br/><br/>
-               < Adduser/>
+               <TableList/>
            </div> 
           
     </div>

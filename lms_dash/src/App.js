@@ -10,6 +10,7 @@ import Thank from './Pages/Thank';
 import Employee from './Pages/Employee';
 import Adduser from './Pages/Adduser';
 import Leave from './Pages/Leave';
+import TableList from './Pages/TableList';
 function App() {
   return (
     <Router>
@@ -24,7 +25,7 @@ function App() {
         <Route path='/Employee' element={<Employee/>}/>
         <Route path='/Adduser' element={<Adduser/>}/>
         <Route path='/Leave' element={<Leave/>}/>
-
+        <Route path="/TableList" element={<TableList/>}/>
        </Routes>
     </Router>
   );

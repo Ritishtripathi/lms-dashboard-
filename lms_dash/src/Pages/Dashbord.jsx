@@ -61,18 +61,18 @@ function Dashbord(){
              </div><hr style={{color:'grey'}}/>
 
               {/*admin static card */}
-              <div style={{display:'flex'}}>
+              <div style={{display:'flex',content:'justify'}}>
               <div className='card-dashbord1'>
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
-          <span className='card-text-dashbord1'><h5>REPLACEMENT</h5>Employee On Leave<br/>Employee On Request</span>
+          <span className='card-text-dashbord1'><h6>REPLACEMENT</h6>Employee On Leave<br/>Employee On Request</span>
           <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div>
             {/*admin static card */}
          <div className='card-dashbord1'>
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
-          <span className='card-text-dashbord1'><h5>ANNUAL_LEAVE</h5>Employee On Leave <br/>Employee On Requests</span>
+          <span className='card-text-dashbord1'><h6>ANNUAL_LEAVE</h6>Employee On Leave <br/>Employee On Requests</span>
           <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div></div>
         
@@ -82,15 +82,15 @@ function Dashbord(){
          <div className='card-dashbord1'>
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
-          <span className='card-text-dashbord1'><h5>SICK_LEAVE</h5> Employee On Leave <br/>Employee On Requests</span>
+          <span className='card-text-dashbord1'><h6>SICK_LEAVE</h6> Employee On Leave <br/>Employee On Requests</span>
           <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div>
           {/*admin static card */}
           <div className='card-dashbord1'>
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
-          <span className='card-text-dashbord1'><h5>EMERGENCY_LEAVE</h5>Employee On Leave<br/>Employee On Requests</span>
-          <span style={{marginLeft:'4vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+          <span className='card-text-dashbord1'><h6>EMERGENCY_LEAVE</h6>Employee On Leave<br/>Employee On Requests</span>
+          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div>
          </div>
            </div>  
