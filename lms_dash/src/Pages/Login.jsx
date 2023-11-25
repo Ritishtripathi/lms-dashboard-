@@ -21,7 +21,7 @@ function Login(){
           text: 'Login Successfully',
           icon: 'success',
       });
-        navigate(`/Dashbord`);
+        navigate(`/Dashbord?username=${username}`);
         
       }else{
         swal.fire({
