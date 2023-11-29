@@ -54,9 +54,8 @@ function Login(){
                     <label><button className="buttonlogin" onClick={login}>Login </button></label><br/>
                     <label ><input className="remeder" type="checkbox"/> Remendar me
                     <LockOpenIcon  style={{marginLeft:'6vw'}}/><Link to="/Forget"  style={{textDecoration:'none'}}>Forget <p style={{marginLeft:'15vw'}}> Password?</p></Link>
-                    
-                  
                     </label>
+                    <label><b>New User ? </b><Link to="/Signup"  style={{textDecoration:'none'}}>Register here</Link></label>
                 </form><br></br><br></br>
                 <span className="copyright">Copyright @ 2023 by Ritish Tripathi.</span>
             </div>

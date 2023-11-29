@@ -11,6 +11,7 @@ import Employee from './Pages/Employee';
 import Adduser from './Pages/Adduser';
 import Leave from './Pages/Leave';
 import TableList from './Pages/TableList';
+import Signup from './Pages/Signup';
 function App() {
   return (
     <Router>
@@ -25,6 +26,7 @@ function App() {
         <Route path='/Employee' element={<Employee/>}/>
         <Route path='/Adduser' element={<Adduser/>}/>
         <Route path='/Leave' element={<Leave/>}/>
+        <Route path='/Signup' element={<Signup/>}/>
         <Route path="/TableList" element={<TableList/>}/>
        </Routes>
     </Router>
