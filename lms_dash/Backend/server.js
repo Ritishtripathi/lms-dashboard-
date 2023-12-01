@@ -35,7 +35,14 @@ const User=mongoose.model('User',{
     password:String
 
 });
-// signup api 
+/// employee model
+const Employee=mongoose.model('Employee',{
+FirstName:String,
+LastName:String,
+
+
+});
+// signup api
 
 app.post('/signup',async(req,res)=>{
     const {name,email,date,address,password}=req.body;
@@ -48,5 +55,25 @@ res.json({message:'Signup successFull'});
 console.error('Error during Signup',error);
 res.status(500).json({message:'Interval server error '});
     }
+});
+
+// Login Api 
+
+app.post('/login',async(req,res)=>{
+const {email,password}=req.body;
+try{
+  const user=await User.findOne({email});
+  if(!user || user.password!==password){
+    return res.status(401).json({message:
+   'invalid email or password' });
+  }
+
+res.json({message:'Login successfull',user})
+
+}
+catch (error){
+console.error('Error duringg LOgin',error);
+res.status(500).json({message:'Interval server erro'});
+}
 });
 

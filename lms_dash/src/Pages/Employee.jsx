@@ -45,7 +45,7 @@ function Employee(){
         
         <Form.Group as={Col} controlId="formGridEmail">
        First Name*
-          <Form.Control type="text" placeholder="First Name" />
+          <Form.Control type="text" name="FirstName" placeholder="First Name" />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
