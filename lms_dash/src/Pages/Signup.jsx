@@ -60,8 +60,8 @@ else{
             </div>
             <div className='second'>
                 <img src={logo} className="logoimg"/><br/>
-                <span className="heding">Signup here</span>
-                <form className="loginform" onSubmit={signupsubmit}>
+                <span className="heding-signup">Signup here if you're new? user</span>
+                <form className="sign-form" onSubmit={signupsubmit}>
                 <label>Name</label>
                     <label><input type="text" name='name' value={formData.name} onChange={hanlechange} placeholder='enter your name' className="inputlogin" /></label>
                     <label>Email</label>
@@ -76,12 +76,7 @@ else{
                     </label><br/>
                     
                     <label><button type='submit' className="buttonlogin">Signup</button></label><br/>
-                    <label ><input className="remeder" type="checkbox"/> Remendar me
-                    <LockOpenIcon  style={{marginLeft:'6vw'}}/><Link to="/Forget"  style={{textDecoration:'none'}}>Forget <p style={{marginLeft:'15vw'}}> Password?</p></Link>
-                    
-                  
-                    </label>
-                </form><br></br><br></br>
+                </form><br></br>
                 <span className="copyright">Copyright @ 2023 by Ritish Tripathi.</span>
             </div>
            </div>

@@ -27,6 +27,16 @@
     margin-left:9vw;
     text-align:justify;
   }
+  .heding-signup{
+    font-size:15px;
+    margin-left:8vw;
+   
+    
+  }
+  .sign-form{
+    margin-left:1vw;
+    margin-top:1vh;
+  }
   .loginform{
     margin-left:1vw;
     margin-top:9vh;
@@ -51,6 +61,7 @@
     color:white;
     border-radius: 5px;
   }
+
   .buttonlogin1{
     height:5vh;
     width:20vw;

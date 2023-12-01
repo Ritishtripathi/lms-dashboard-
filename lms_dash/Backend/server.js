@@ -2,7 +2,7 @@ const express=require('express');
 const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
 const cors=require('cors');
-const { Co2Sharp } = require('@mui/icons-material');
+
 
 const app=express();
 const port=3001;
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/Newlms')
 .then(()=>{
 console.log('database is connect');
 app.listen(port,()=>{
-    console.log(`Server is running on port${port} `);
+    console.log(`Server is running on port${port}`);
 });
 })
 .catch( (error)=>{
@@ -36,11 +36,29 @@ const User=mongoose.model('User',{
 
 });
 /// employee model
-const Employee=mongoose.model('Employee',{
-FirstName:String,
-LastName:String,
+const employee=mongoose.model('employee',{
+    firstname:String,
+    lastname:String,
+    email:String,
+    password:String,
+    emptype:String,
+    owntype:String,
+    contact:String,
+    gender:String,
 
+});
 
+app.post('/employee',async(req,res)=>{
+    const{firstname,lastname,email,password,emptype,owntype,contact,gender}=req.body;
+    try{
+     const  newEmployee=new employee({firstname,lastname,email,password,emptype,owntype,contact,gender});
+     await newEmployee.save();
+     res.json({message:'employee added success'});
+    }
+    catch(error){
+     console.error('error duringg add employees',error);
+     res.json(500).json({message:'interwalserver error'});
+    }
 });
 // signup api
 
