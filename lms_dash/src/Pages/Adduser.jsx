@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,22 +15,46 @@ const columns = [
   { id: 'email', label: 'Email', minWidth: 130 },
   { id: 'dob', label: 'DOB', minWidth: 100 },
   { id: 'password', label: 'Password', minWidth: 120 },
-  { id: 'action', label: 'Action', minWidth:1  },
+  { id: 'action', label: 'Action', minWidth: 1 },
   { id: 'action1', minWidth: 1 },
- 
 ];
 
-function createData(name, email, dob, password,action,action1) {
-  return { name, email, dob, password,action,action1};
+function createData(name, email, dob, password, action, action1) {
+  return { name, email, dob, password, action, action1 };
 }
 
-const rows = [
-  createData('Jay','jay@mail.com','jay@123','123',<DeleteIcon/>,<CheckIcon/>,),
-];
-
 export default function Adduser() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from your API endpoint
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/employees'); // Update the URL based on your API endpoint
+        const data = await response.json();
+
+        // Map the retrieved data to rows
+        const newRows = data.employees.map((employee) =>
+          createData(
+            employee.firstname + ' ' + employee.lastname,
+            employee.email,
+            employee.dob,
+            employee.password,
+            <DeleteIcon />,
+            <CheckIcon />
+          )
+        );
+
+        setRows(newRows);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array ensures that the effect runs once after the initial render
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

@@ -48,6 +48,18 @@ const employee=mongoose.model('employee',{
 
 });
 
+// create model for leave
+const leave=mongoose.model('leave',{
+    leavetype:String,
+    leavedays:String,
+    fromdate:String,
+    todate:String,
+    leavedur:String,
+    leavemark:String,
+    leavestatus:String,
+    leavenote:String
+})
+//employee api
 app.post('/employee',async(req,res)=>{
     const{firstname,lastname,email,password,emptype,owntype,contact,gender}=req.body;
     try{
@@ -60,6 +72,8 @@ app.post('/employee',async(req,res)=>{
      res.json(500).json({message:'interwalserver error'});
     }
 });
+
+
 // signup api
 
 app.post('/signup',async(req,res)=>{
@@ -74,7 +88,6 @@ console.error('Error during Signup',error);
 res.status(500).json({message:'Interval server error '});
     }
 });
-
 // Login Api 
 
 app.post('/login',async(req,res)=>{
@@ -94,4 +107,36 @@ console.error('Error duringg LOgin',error);
 res.status(500).json({message:'Interval server erro'});
 }
 });
+// 
 
+// get employee api 
+app.get('/employee',async(re,res)=>{
+    try{
+// fetch all employee from the database 
+const employees =await employee.find();
+// send the lisst of employess as a json response 
+res.json({employees});
+
+
+    }
+    catch (error){
+console.error('Error during employee getting',error);
+res.status(500).json({message:'Interval server error'});
+    }
+})
+
+// leave api 
+
+app.post('/leave',async(req,res)=>{
+const{leavetype,leavedays,fromdate,todate,leavedur,leavemark,leavestatus,leavenote}=req.body;
+
+try{
+    const Leave=new leave({leavetype,leavedays,fromdate,todate,leavedur,leavemark,leavestatus,leavenote});
+    await Leave.save();
+    res.json({message:'Signup successFull'});
+        }
+        catch (error){
+    console.error('Error during Signup',error);
+    res.status(500).json({message:'Interval server error '});
+        }
+})
