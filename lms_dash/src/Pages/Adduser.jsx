@@ -60,6 +60,18 @@ export default function Adduser() {
     setPage(newPage);
   };
 
+  // fetch data 
+  const [employee,setEmployee]=
+  useState([]);
+  useEffect(()=>{
+    fetch('http://localhost:3001/employee/data').then(response=>response.json()).
+    then(data=>setEmployee(data))
+  },[])
+  
+
+
+
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);

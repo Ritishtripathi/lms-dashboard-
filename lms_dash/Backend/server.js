@@ -110,7 +110,7 @@ res.status(500).json({message:'Interval server erro'});
 // 
 
 // get employee api 
-app.get('/employee',async(re,res)=>{
+app.get('/employee/data',async(re,res)=>{
     try{
 // fetch all employee from the database 
 const employees =await employee.find();
@@ -139,4 +139,22 @@ try{
     console.error('Error during Signup',error);
     res.status(500).json({message:'Interval server error '});
         }
+});
+
+
+/// DELETE API FOR EMPLOYEE 
+app.delete('/employee/data/:id',async (req,res)=>{
+    try
+    {
+        const employeeid=req.params.id;
+        const deleteemployee=await employee.findByIdAndDelete(employeeid);
+        if (!deleteemployee){
+return res.status(404).json({message:'Employee not found'});
+        }
+        res.json({message:'Employee deleted successfully'});
+
+    }
+    catch (error){
+
+    }
 })
