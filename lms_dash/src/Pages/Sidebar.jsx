@@ -14,7 +14,12 @@ function Sidebar(){
       <li><span className="icon-sidebar"><SpaceDashboardIcon style={{fontSize:'4vh'}}/></span><Link to="/Dashbord" className="link-sidebar">Dashboard</Link></li><br/>
       <li><span className="icon-sidebar"><PeopleOutlineIcon style={{fontSize:'4vh'}}/></span><Link to="/Employee" className="link-sidebar">Employee</Link></li><br/>
       <li><span className="icon-sidebar"><CalendarMonthIcon style={{fontSize:'4vh'}}/></span><Link to="/Leave" className="link-sidebar"> Leave</Link></li><br/>
-      <li><span className="icon-sidebar"><LeaderboardIcon style={{fontSize:'4vh'}}/></span> Administration</li><br/>
+      <li><span className="icon-sidebar"><LeaderboardIcon style={{fontSize:'4vh'}}/></span> Administration
+      <ul type='circle'>
+        <li style={{marginLeft:'3vw'}}><Link to="/Department" className="link-sidebar" >Department</Link></li>
+        <li style={{marginLeft:'3vw'}}><Link to="/Holiday" className="link-sidebar">Holiday</Link></li>
+      </ul>
+      </li><br/>
       <li><span className="icon-sidebar"><SettingsIcon style={{fontSize:'4vh'}}/></span> Setting</li><br/>
       <li><span className="icon-sidebar"><LogoutIcon style={{fontSize:'4vh'}}/></span><Link to="/Login" className="link-sidebar">Logout</Link></li><br/>
       </ul>

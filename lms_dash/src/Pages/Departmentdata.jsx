@@ -10,29 +10,29 @@ import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 
 const columns = [
-  { id: 'name', label: 'Employee Name', minWidth: 150 },
-  { id: 'email', label: 'Email', minWidth: 130 },
+  { id: 'name', label: 'Department Name', minWidth: 150 },
+  { id: 'manager', label: 'Manager', minWidth: 130 },
 
-  { id: 'password', label: 'Password', minWidth: 120 },
+  { id: 'discription', label: 'Description', minWidth: 120 },
   { id: 'action', label: 'Action', minWidth: 1 },
 ];
 
-function createData(name, email, dob, password){
-  return { name, email, dob, password };
+function createData(name,manager,description,action){
+  return {name,manager,description,action };
 }
 
-export default function Adduser() {
+export default function Departmentdata() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/employee/data')
+    fetch('http://localhost:3001/department/data')
       .then((response) => response.json())
       .then((data) => {
         // Check if data is an array or if it's an object with an array property
-        const employeeArray = Array.isArray(data) ? data : data.employees || [];
-        setRows(employeeArray.map((employee) => createData(employee.firstname, employee.email, employee.dob, employee.password)));
+        const departmentArray = Array.isArray(data) ? data : data.departments || [];
+        setRows(departmentArray.map((department) => createData(department.departmentname, department.manager, department.description)));
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);

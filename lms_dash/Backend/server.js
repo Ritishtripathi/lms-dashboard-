@@ -59,6 +59,23 @@ const leave=mongoose.model('leave',{
     leavestatus:String,
     leavenote:String
 })
+
+//model of holiday
+
+const holiday = mongoose.model('holiday',{
+  name:String,
+  fromdate:String,
+  todate:String,
+  remark:String
+})
+
+//model of department
+
+const department = mongoose.model('department',{
+    departmentname:String,
+    manager:String,
+    description:String
+});
 //employee api
 app.post('/employee',async(req,res)=>{
     const{firstname,lastname,email,password,emptype,owntype,contact,gender}=req.body;
@@ -85,7 +102,7 @@ res.json({message:'Signup successFull'});
     }
     catch (error){
 console.error('Error during Signup',error);
-res.status(500).json({message:'Interval server error '});
+res.status(500).json({message:'Interval server error'});
     }
 });
 // Login Api 
@@ -110,14 +127,12 @@ res.status(500).json({message:'Interval server erro'});
 // 
 
 // get employee api 
-app.get('/employee/data',async(re,res)=>{
+app.get('/employee/data',async(req,res)=>{
     try{
 // fetch all employee from the database 
 const employees =await employee.find();
 // send the lisst of employess as a json response 
 res.json({employees});
-
-
     }
     catch (error){
 console.error('Error during employee getting',error);
@@ -156,5 +171,66 @@ return res.status(404).json({message:'Employee not found'});
     }
     catch (error){
 
+    }
+})
+
+
+//get data of leave
+
+app.get('/leave/data',async(req,res)=>{
+    try{
+     const leaves=await leave.find();
+     res.json({leaves});
+    }
+    catch(error){
+        console.error('error during fetch data',error);
+        res.status(500).json({message:'innterwal  error'});
+    }
+});
+
+//post data of Holiday (api)
+
+app.post('/holiday',async(req,res)=>{
+    const {name,fromdate,todate,remark}=req.body;
+    try{
+       const Holiday=new holiday ({name,fromdate,todate,remark});
+       await Holiday.save();
+       res.json({message:'holiday added successfully'});
+    }
+    catch(error){
+         console.error('error during save',error);
+         res.status(500).json({message:'feild saved!'});
+    }
+});
+
+
+
+//api of department 
+
+app.post('/department',async(req,res)=>{
+    const {departmentname,manager,description}=req.body;
+    try{
+      const Department=new department({departmentname,manager,description});
+       await Department.save();
+       res.json('department added success');
+    }
+    catch(error){
+     console.error('error during save ',error);
+     res.status(500).json({message:'interwal error'});
+    }
+});
+
+
+//department data get api
+
+app.get('/department/data',async(req,res)=>{
+   
+    try{
+        const departments=await department.find();
+        res.json({departments});
+    }
+    catch(error){
+     console.error('fetching data error',error);
+     res.status(500).json({message:'interwal error'});
     }
 })

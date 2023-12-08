@@ -7,7 +7,8 @@ import { useState } from "react";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import TableList from './TableList';
+
+import Leavesdata from "./Leavesdata";
 import Swal from "sweetalert2";
 import axios from "axios";
 function Leave(){
@@ -150,7 +151,7 @@ function Leave(){
       </Modal>
     
                </div><br/><br/>
-               <TableList/>
+               <Leavesdata/>
            </div> 
           
     </div>

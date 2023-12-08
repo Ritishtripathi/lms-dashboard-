@@ -12,6 +12,10 @@ import Adduser from './Pages/Adduser';
 import Leave from './Pages/Leave';
 import TableList from './Pages/TableList';
 import Signup from './Pages/Signup';
+import Department from './Pages/Department';
+import Holiday from './Pages/Holiday';
+import Leavesdata from './Pages/Leavesdata';
+import Departmentdata from './Pages/Departmentdata';
 function App() {
   return (
     <Router>
@@ -28,6 +32,10 @@ function App() {
         <Route path='/Leave' element={<Leave/>}/>
         <Route path='/Signup' element={<Signup/>}/>
         <Route path="/TableList" element={<TableList/>}/>
+        <Route path='/Department' element={<Department/>}/>
+        <Route path='/Holiday' element={<Holiday/>}/>
+        <Route path='/Leavesdata' element={<Leavesdata/>}/>
+        <Route path=' Departmentdata' element={< Departmentdata/>}/>
        </Routes>
     </Router>
   );
