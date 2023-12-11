@@ -40,10 +40,10 @@ function Leave(){
   if(response && response.data){
     console.log(response.data);
     Swal.fire({
-        icon:'Success',
-        title:'Signup Succesfully',
-        text:'Welcome back'
-    })
+      icon:'success',
+      titel:'success',
+      text:'leave added success'
+      })
   }
   else{
     console.error('Inavlid response data ',response);

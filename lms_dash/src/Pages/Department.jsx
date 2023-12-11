@@ -33,10 +33,10 @@ const Department=async (e)=>{
       if(response && response.data){
         console.log(response.data);
         Swal.fire({
-            icon:'Success',
-            title:'department added Succesfully',
-            text:'Welcome back'
-        })
+          icon:'success',
+          titel:'success',
+          text:'department added success'
+          })
       }
    }
    catch(error){

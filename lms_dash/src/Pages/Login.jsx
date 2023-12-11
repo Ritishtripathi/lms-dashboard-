@@ -29,10 +29,10 @@ const response =await axios.post('http://localhost:3001/login',FormData);
 if(response && response.data){
   console.log("reasponse data",response);
   Swal.fire({
-      icon:'Success',
-      title:'Login Succesfully',
-      text:'Welcome back'
-  })
+    icon:'success',
+    titel:'success',
+    text:'Welcome in LMS!'
+    })
   Navigate('/Dashbord');
 
 }

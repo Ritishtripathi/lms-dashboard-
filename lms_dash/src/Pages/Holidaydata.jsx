@@ -9,17 +9,17 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Swal from 'sweetalert2';
 const columns = [
-  { id: 'name', label: 'Department Name', minWidth: 150 },
-  { id: 'manager', label: 'Manager', minWidth: 130 },
+  { id: 'Holiday_name', label: 'Holiday-Name', minWidth: 150 },
+  { id: 'From_date', label: 'From-date', minWidth: 130 },
 
-  { id: 'discription', label: 'Description', minWidth: 120 },
+  { id: 'To_date', label: 'To-date', minWidth: 120 },
+  { id: 'remark', label: 'Remark', minWidth: 120 },
   { id: 'action', label: 'Action', minWidth: 1 },
 ];
 
-function createData(name,manager,discription,action){
-  return {name,manager,discription,action };
+function createData(Holiday_name,From_date,To_date,remark){
+  return {Holiday_name,From_date,To_date,remark };
 }
 
 export default function Departmentdata() {
@@ -28,13 +28,12 @@ export default function Departmentdata() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/department/data')
+    fetch('http://localhost:3001/holiday/data')
       .then((response) => response.json())
       .then((data) => {
         // Check if data is an array or if it's an object with an array property
-        const departmentArray = Array.isArray(data) ? data : data.departments || [];
-       //setRows(departmentArray.map((department)=>({...department,id:department._id})));
-         setRows(departmentArray.map((department) => createData(department.departmentname, department.manager, department.description)));
+        const HolidayArray = Array.isArray(data) ? data : data.holidays || [];
+        setRows(HolidayArray.map((holiday) => createData(holiday.name, holiday.fromdate,holiday.todate,holiday.remark)));
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
@@ -47,53 +46,7 @@ export default function Departmentdata() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const handleDelete = async (index,departmentid)=>{
 
-    try{
-console.log("here is id of delete",departmentid);
-
-// validate if employee is a non-empty string 
-if(!departmentid || typeof departmentid!=='string'){
-  console.error('Invalid id');
-  Swal.fire({
-    icon:'error',
-    title:'Error',
-    text:'Inavalid department_Id',
-  });
-  return;
-}
-
-/// deleting data 
-const response =await fetch(`http://localhost:3001/department/data/${departmentid}`,{method:'DELETE',});
-if(!response.ok){
-  const data =await response.json();
-  Swal.fire({
-    icon:'error',
-    title:'Error',
-    text:data.message || 'Failed to delete data '
-  });
-}
-// if succesfull delete 
-const updatedRows=[...rows];
-updatedRows.splice(page * rowsPerPage+ index,1);
-setRows(updatedRows);
-Swal.fire({
-icon:'success',
-titel:'success',
-texT:'department delete success'
-})
-
-    }
-    catch (error){
-console.error('failed to delete department',error);
-Swal.fire({
-  icon:'error',
-  title:'Error',
-  text:'failed to delete'
-});
-    }
-
-   };
   const handleUpdate = (index) => {
     // Here you can implement the logic to update the employee data
     // For example, you can show a modal for editing or send a request to the server
@@ -131,7 +84,7 @@ Swal.fire({
                     <EditIcon onClick={() => handleUpdate(index)} />
                   </TableCell>
                   <TableCell>
-                    <DeleteIcon onClick={() => handleDelete(index,row._id)} />
+                    <DeleteIcon onClick={() => handleUpdate(index)} />
                   </TableCell>
                 </TableRow>
               ))}

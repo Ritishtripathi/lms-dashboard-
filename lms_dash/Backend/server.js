@@ -162,6 +162,9 @@ app.delete('/employee/data/:id',async (req,res)=>{
     try
     {
         const employeeid=req.params.id;
+        if(!mongoose.Types.ObjectId.isValid(employeeid)){
+            return res.status(400).json({message:'Invalid id'});
+        }
         const deleteemployee=await employee.findByIdAndDelete(employeeid);
         if (!deleteemployee){
 return res.status(404).json({message:'Employee not found'});
@@ -170,9 +173,29 @@ return res.status(404).json({message:'Employee not found'});
 
     }
     catch (error){
-
+         console.error(error);
     }
-})
+});
+
+//Delete api of Department data
+
+app.delete('/department/data/:id', async(req,res)=>{
+      try{
+        const departmentid=req.params.id;
+        if(!mongoose.Types.ObjectId.isValid(departmentid)){
+            return res.status(400).json({message:'Invalid id'});
+        }
+        const deletedepartment=await department.findByIdAndDelete(departmentid);
+        if(!deletedepartment){
+           return res.status(404).json({message:'department not found'});
+        }
+        res.json({message:'Employee delete success'});
+      }
+      catch(error){
+         console.error(error);
+         res.status(500).json({message:'interwal error!'});
+      }
+});
 
 
 //get data of leave
@@ -187,6 +210,18 @@ app.get('/leave/data',async(req,res)=>{
         res.status(500).json({message:'innterwal  error'});
     }
 });
+
+ //Holiday data code 
+ app.get('/holiday/data',async (req,res)=>{
+    try{
+      const holidays=await holiday.find();
+      res.json({holidays});
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({message:'interwal error!'});
+    }
+ })
 
 //post data of Holiday (api)
 
@@ -233,4 +268,4 @@ app.get('/department/data',async(req,res)=>{
      console.error('fetching data error',error);
      res.status(500).json({message:'interwal error'});
     }
-})
+});

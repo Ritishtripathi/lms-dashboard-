@@ -31,10 +31,10 @@ const response = await axios.post('http://localhost:3001/signup',formData);
 if(response && response.data){
     console.log(response.data);
     Swal.fire({
-        icon:'Success',
-        title:'Signup Succesfully',
-        text:'Welcome back'
-    })
+        icon:'success',
+        titel:'success',
+        text:'Reggistration successfully!'
+        })
     Navigate('/Login');
     
 }

@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
 import Swal from "sweetalert2";
+import Holidaydata from './Holidaydata';
 const Holiday=()=>{
 
   const [show, setShow] = useState(false);
@@ -35,10 +36,10 @@ const holidaysumit=async(e)=>{
         if(response && response.data){
             console.log(response.data);
             Swal.fire({
-                icon:'Success',
-                title:'holiday added Succesfully',
-                text:'Welcome back'
-            })
+              icon:'success',
+              titel:'success',
+              text:'Holiday added success'
+              })
         }
         else{
             console.error('error during',response);
@@ -116,7 +117,8 @@ const holidaysumit=async(e)=>{
         </Modal.Footer>
         </form>
       </Modal>
-                </div>
+           </div><br/>
+                   <Holidaydata/>
                </div>
           </div>
     );
