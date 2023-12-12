@@ -8,18 +8,17 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import Swal from 'sweetalert2';
 const columns = [
-  { id: 'leave', label: 'Leave-type', minWidth: 150 },
-  { id: 'from', label: 'From-date', minWidth: 130 },
+  { id: 'leavetype', label: 'Leave-type', minWidth: 150 },
+  { id: 'fromdate', label: 'From-date', minWidth: 130 },
 
-  { id: 'to', label: 'To-date', minWidth: 120 },
-  { id: 'status', label: 'Status', minWidth: 1 },
+  { id: 'todate', label: 'To-date', minWidth: 120 },
+  { id: 'leavestatus', label: 'Status', minWidth: 1 },
 ];
 
-function createData(leave,from,to,status){
-  return { leave,from,to,status };
-}
+
 
 export default function Leavesdata() {
   const [page, setPage] = useState(0);
@@ -30,10 +29,9 @@ export default function Leavesdata() {
     fetch('http://localhost:3001/leave/data')
       .then((response) => response.json())
       .then((data) => {
-        // Check if data is an array or if it's an object with an array property
         const leaveArray = Array.isArray(data) ? data : data.leaves || [];
-        setRows(leaveArray.map((leave) => createData(leave.leavetype, leave.fromdate,leave.todate, leave.leavestatus)));
-      })
+      setRows(leaveArray.map((leave)=>({...leave,id:leave._id})));
+         })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
@@ -45,12 +43,50 @@ export default function Leavesdata() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const handleDelete = async (index,leaveid)=>{
 
+    try{
+console.log("here is id of delete",leaveid);
+
+
+
+/// deleting data 
+const response =await fetch(`http://localhost:3001/leave/data/${leaveid}`,{method:'DELETE',});
+if(!response.ok){
+  const data =await response.json();
+  Swal.fire({
+    icon:'error',
+    title:'Error',
+    text:data.message || 'Failed to delete data '
+  });
+}
+// if succesfull delete 
+const updatedRows=[...rows];
+updatedRows.splice(page * rowsPerPage+ index,1);
+setRows(updatedRows);
+Swal.fire({
+icon:'success',
+titel:'success',
+texT:'department delete success'
+})
+
+    }
+    catch (error){
+console.error('failed to delete leave',error);
+Swal.fire({
+  icon:'error',
+  title:'Error',
+  text:'failed to delete'
+});
+    }
+
+   };
   const handleUpdate = (index) => {
     // Here you can implement the logic to update the employee data
     // For example, you can show a modal for editing or send a request to the server
     console.log('Update employee at index:', index);
   };
+
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -81,6 +117,9 @@ export default function Leavesdata() {
                   ))}
                   <TableCell>
                     <EditIcon onClick={() => handleUpdate(index)} />
+                  </TableCell>
+                  <TableCell>
+                    <DeleteIcon onClick={() => handleDelete(index,row._id)} />
                   </TableCell>
                 </TableRow>
               ))}

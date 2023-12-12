@@ -140,7 +140,6 @@ else{
          Mobile*
           <Form.Control type="text" placeholder="Enter Contact"name="contact" onChange={adduser} value={Data.contact}/>
         </Form.Group>
-
         <Form.Group as={Col} controlId="formGridPassword">
           Gender*<br/>
           <input type="radio" name='gender' onChange={adduser} value={Data.gender}/> Male <input type="radio" name='gender' onChange={adduser} value={Data.gender}/> Female

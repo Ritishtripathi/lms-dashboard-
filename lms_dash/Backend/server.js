@@ -124,7 +124,56 @@ console.error('Error duringg LOgin',error);
 res.status(500).json({message:'Interval server erro'});
 }
 });
-// 
+
+
+// leave api 
+
+app.post('/leave',async(req,res)=>{
+    const{leavetype,leavedays,fromdate,todate,leavedur,leavemark,leavestatus,leavenote}=req.body;
+    
+    try{
+        const Leave=new leave({leavetype,leavedays,fromdate,todate,leavedur,leavemark,leavestatus,leavenote});
+        await Leave.save();
+        res.json({message:'Signup successFull'});
+            }
+            catch (error){
+        console.error('Error during Signup',error);
+        res.status(500).json({message:'Interval server error '});
+            }
+    });
+    
+    //post data of Holiday (api)
+    
+    app.post('/holiday',async(req,res)=>{
+        const {name,fromdate,todate,remark}=req.body;
+        try{
+           const Holiday=new holiday ({name,fromdate,todate,remark});
+           await Holiday.save();
+           res.json({message:'holiday added successfully'});
+        }
+        catch(error){
+             console.error('error during save',error);
+             res.status(500).json({message:'feild saved!'});
+        }
+    });
+    
+    
+    
+    //api of department 
+    
+    app.post('/department',async(req,res)=>{
+        const {departmentname,manager,description}=req.body;
+        try{
+          const Department=new department({departmentname,manager,description});
+           await Department.save();
+           res.json('department added success');
+        }
+        catch(error){
+         console.error('error during save ',error);
+         res.status(500).json({message:'interwal error'});
+        }
+    });
+    
 
 // get employee api 
 app.get('/employee/data',async(req,res)=>{
@@ -140,20 +189,45 @@ res.status(500).json({message:'Interval server error'});
     }
 })
 
-// leave api 
+//get data of leave
 
-app.post('/leave',async(req,res)=>{
-const{leavetype,leavedays,fromdate,todate,leavedur,leavemark,leavestatus,leavenote}=req.body;
+app.get('/leave/data',async(req,res)=>{
+    try{
+     const leaves=await leave.find();
+     res.json({leaves});
+    }
+    catch(error){
+        console.error('error during fetch data',error);
+        res.status(500).json({message:'innterwal  error'});
+    }
+});
 
-try{
-    const Leave=new leave({leavetype,leavedays,fromdate,todate,leavedur,leavemark,leavestatus,leavenote});
-    await Leave.save();
-    res.json({message:'Signup successFull'});
-        }
-        catch (error){
-    console.error('Error during Signup',error);
-    res.status(500).json({message:'Interval server error '});
-        }
+ //Holiday data code get
+ app.get('/holiday/data',async (req,res)=>{
+    try{
+      const holidays=await holiday.find();
+      res.json({holidays});
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({message:'interwal error!'});
+    }
+ })
+
+
+
+//department data get api
+
+app.get('/department/data',async(req,res)=>{
+   
+    try{
+        const departments=await department.find();
+        res.json({departments});
+    }
+    catch(error){
+     console.error('fetching data error',error);
+     res.status(500).json({message:'interwal error'});
+    }
 });
 
 
@@ -197,75 +271,41 @@ app.delete('/department/data/:id', async(req,res)=>{
       }
 });
 
-
-//get data of leave
-
-app.get('/leave/data',async(req,res)=>{
+//delete api of holiday
+app.delete('/holiday/data/:id', async(req,res)=>{
     try{
-     const leaves=await leave.find();
-     res.json({leaves});
+      const holidayid=req.params.id;
+      if(!mongoose.Types.ObjectId.isValid(holidayid)){
+          return res.status(400).json({message:'Invalid id'});
+      }
+      const deleteholiday=await holiday.findByIdAndDelete(holidayid);
+      if(!deleteholiday){
+         return res.status(404).json({message:'holiday not found'});
+      }
+      res.json({message:'Holiday delete success'});
     }
     catch(error){
-        console.error('error during fetch data',error);
-        res.status(500).json({message:'innterwal  error'});
+       console.error(error);
+       res.status(500).json({message:'interwal error!'});
     }
 });
 
- //Holiday data code 
- app.get('/holiday/data',async (req,res)=>{
+//delete api of leave
+
+app.delete('/leave/data/:id',async(req,res)=>{
     try{
-      const holidays=await holiday.find();
-      res.json({holidays});
+        const leaveid=req.params.id;
+        if(!mongoose.Types.ObjectId.isValid(leaveid)){
+            return res.status(400).json({message:'Invalid id'});
+        }
+        const deleteleave=await leave.findByIdAndDelete(leaveid);
+        if(!deleteleave){
+           return res.status(404).json({message:'holiday not found'});
+        }
+        res.json({message:'Leave delete success'});
     }
     catch(error){
-        console.error(error);
-        res.status(500).json({message:'interwal error!'});
-    }
- })
-
-//post data of Holiday (api)
-
-app.post('/holiday',async(req,res)=>{
-    const {name,fromdate,todate,remark}=req.body;
-    try{
-       const Holiday=new holiday ({name,fromdate,todate,remark});
-       await Holiday.save();
-       res.json({message:'holiday added successfully'});
-    }
-    catch(error){
-         console.error('error during save',error);
-         res.status(500).json({message:'feild saved!'});
-    }
-});
-
-
-
-//api of department 
-
-app.post('/department',async(req,res)=>{
-    const {departmentname,manager,description}=req.body;
-    try{
-      const Department=new department({departmentname,manager,description});
-       await Department.save();
-       res.json('department added success');
-    }
-    catch(error){
-     console.error('error during save ',error);
-     res.status(500).json({message:'interwal error'});
-    }
-});
-
-
-//department data get api
-
-app.get('/department/data',async(req,res)=>{
-   
-    try{
-        const departments=await department.find();
-        res.json({departments});
-    }
-    catch(error){
-     console.error('fetching data error',error);
-     res.status(500).json({message:'interwal error'});
+     console.error(error);
+     res.status(500).json({message:'error  during delete data'});
     }
 });

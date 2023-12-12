@@ -31,9 +31,10 @@ export default function Adduser() {
     fetch('http://localhost:3001/employee/data')
       .then((response) => response.json())
       .then((data) => {
+
         // Check if data is an array or if it's an object with an array property
         const employeeArray = Array.isArray(data) ? data : data.employees || [];
-        setRows(employeeArray.map((employee)=>({...employee,id:employee._id})));
+        setRows(employeeArray.map((employee)=>({...employee,id:employee._id})));  
         // setRows(employeeArray.map((employee) => createData(employee.firstname, employee.email, employee.dob, employee.password)));
       })
       .catch((error) => console.error('Error fetching data:', error));
@@ -149,5 +150,38 @@ Swal.fire({
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+//     <div>
+//             <table style={{width:'100%',borderCollapse:'collapse',border:'1px solid #ddd'}}>
+// <thead>
+//   <tr>
+//     <th style={{border:'1px solid #ddd'}}>
+//       Employee Name
+//     </th>
+//     <th style={{border:'1px solid #ddd'}}>
+// Email 
+// </th>
+//   </tr>
+// </thead>
+// <tbody>
+//   {rows.map((row,index)=>(
+//     <tr key={index} style={{border:'1px solid #ddd'}}>
+//       <td style={{border:'1px solid #ddd'}}>
+//         {row.firstname}
+
+//       </td>
+//       <td style={{border:'1px solid #ddd'}}>
+//         {row?.email}
+
+//       </td>
+
+//     </tr>
+//   ))}
+// </tbody>
+
+
+
+
+//       </table>
+//     </div>
   );
 }

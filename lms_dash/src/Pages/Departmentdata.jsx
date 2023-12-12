@@ -11,16 +11,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 const columns = [
-  { id: 'name', label: 'Department Name', minWidth: 150 },
+  { id: 'departmentname', label: 'Department Name', minWidth: 150 },
   { id: 'manager', label: 'Manager', minWidth: 130 },
 
-  { id: 'discription', label: 'Description', minWidth: 120 },
+  { id: 'description', label: 'Description', minWidth: 120 },
   { id: 'action', label: 'Action', minWidth: 1 },
 ];
 
-function createData(name,manager,discription,action){
-  return {name,manager,discription,action };
-}
+// function createData(name,manager,discription,action){
+//   return {name,manager,discription,action };
+// }
 
 export default function Departmentdata() {
   const [page, setPage] = useState(0);
@@ -31,11 +31,9 @@ export default function Departmentdata() {
     fetch('http://localhost:3001/department/data')
       .then((response) => response.json())
       .then((data) => {
-        // Check if data is an array or if it's an object with an array property
         const departmentArray = Array.isArray(data) ? data : data.departments || [];
-       //setRows(departmentArray.map((department)=>({...department,id:department._id})));
-         setRows(departmentArray.map((department) => createData(department.departmentname, department.manager, department.description)));
-      })
+      setRows(departmentArray.map((department)=>({...department,id:department._id})));
+         })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
@@ -52,16 +50,7 @@ export default function Departmentdata() {
     try{
 console.log("here is id of delete",departmentid);
 
-// validate if employee is a non-empty string 
-if(!departmentid || typeof departmentid!=='string'){
-  console.error('Invalid id');
-  Swal.fire({
-    icon:'error',
-    title:'Error',
-    text:'Inavalid department_Id',
-  });
-  return;
-}
+
 
 /// deleting data 
 const response =await fetch(`http://localhost:3001/department/data/${departmentid}`,{method:'DELETE',});
