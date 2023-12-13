@@ -2,10 +2,24 @@ const express=require('express');
 const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
 const cors=require('cors');
+const multer =require('multer');
+const path =require ('path');
+
+// set up  uploaded images
+const storage = multer.diskStorage({
+    destination:'./uploads/',
+ filename:function(req,file,cb){
+    cb(null,file.filename+'-'+Date.now()+  path.extname(file.originalname));
+ }
+});
+
+const upload=multer({storage:storage});
+
 
 
 const app=express();
 const port=3001;
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,6 +39,8 @@ console.error('Databse is not connected ',error);
 
 app.use(bodyParser.json());
 
+//get dir name of pic
+// app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 // create model 
 
 const User=mongoose.model('User',{
@@ -32,8 +48,9 @@ const User=mongoose.model('User',{
     email:String,
     date:String,
     address:String,
-    password:String
-
+    password:String,
+    profileImage:String
+  
 });
 /// employee model
 const employee=mongoose.model('employee',{
@@ -93,10 +110,13 @@ app.post('/employee',async(req,res)=>{
 
 // signup api
 
-app.post('/signup',async(req,res)=>{
+app.post('/signup', upload.single('profileImage'),async(req,res)=>{
     const {name,email,date,address,password}=req.body;
     try{
-const newUser=new User({name,email,date,address,password});
+        const profileImagepath=req.file?req.file.path:'';
+
+const newUser=new User({name,email,date,address,password,
+    profileImage:profileImagepath});
 await newUser.save();
 res.json({message:'Signup successFull'});
     }

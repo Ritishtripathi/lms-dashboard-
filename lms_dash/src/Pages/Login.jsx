@@ -4,7 +4,7 @@ import logo from '../Images/logo.jpg';
 import { useState } from 'react';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 
-import { Form, Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -34,13 +34,12 @@ if(response && response.data){
     text:'Welcome in LMS!'
     })
   Navigate('/Dashbord');
-
 }
  else{
     console.error('Inavlid response data ',response);
 }
     }
-    catch (error){
+catch (error){
 console.error('error durinng signnup',error);
 if(error.response && error.response.data){
     console.error('Error details:',error.response.data);
