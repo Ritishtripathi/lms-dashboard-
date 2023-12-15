@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import pagepic from '../Images/page.jpg';
 import logo from '../Images/logo.jpg';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { type } from '@testing-library/user-event/dist/type';
-
 
 
 const  Signup=()=>{
