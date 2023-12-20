@@ -17,6 +17,7 @@ import Holiday from './Pages/Holiday';
 import Leavesdata from './Pages/Leavesdata';
 import Departmentdata from './Pages/Departmentdata';
 import Holidaydata from './Pages/Holidaydata';
+import Clients from './Pages/Clients';
 function App() {
   return (
     <Router>
@@ -38,6 +39,8 @@ function App() {
         <Route path='/Leavesdata' element={<Leavesdata/>}/>
         <Route path=' Departmentdata' element={< Departmentdata/>}/>
         <Route path='/Holidaydata' element={<Holidaydata/>}/>
+        <Route path='/clients' element={<Clients/>}/>
+
        </Routes>
     </Router>
   );

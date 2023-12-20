@@ -75,14 +75,13 @@ else{
                 <span className="heding-signup">Signup here if you're new? user</span>
                 <form className="sign-form" onSubmit={signupsubmit} >
                 <label>Name</label>
-                    <label><input type="text" name='name' value={formData.name} onChange={hanlechange} placeholder='enter your name' className="inputlogin" /></label>
-                    <label>Email</label>
-                    <label><input type="email" name='email' value={formData.email} onChange={hanlechange} placeholder='enter email' className="inputlogin" /></label>
-                    <label>DOB</label>
-                    <label><input type="date" name='date' value={formData.date} onChange={hanlechange} className="inputlogin" /></label>
-                    <label>Address</label>
-                    <label><input type="text" name='address' value={formData.address} onChange={hanlechange} placeholder='enter ur address' className="inputlogin" /></label>
-                    
+                            <label><input type="text" name='name' value={formData.name} onChange={hanlechange} placeholder='enter your name' className="inputlogin" /></label>
+                            <label>Email</label>
+                            <label><input type="email" name='email' value={formData.email} onChange={hanlechange} placeholder='enter email' className="inputlogin" /></label>
+                            <label>DOB</label>
+                            <label><input type="date" name='date' value={formData.date} onChange={hanlechange} className="inputlogin" /></label>
+                            <label>Address</label>
+                            <label><input type="text" name='address' value={formData.address} onChange={hanlechange} placeholder='enter ur address' className="inputlogin" /></label>
                     <label>Password</label>
                     <label><input type="password" name='password'value={formData.password} onChange={hanlechange} placeholder='enter password' className="inputlogin" />
                     </label><br/>

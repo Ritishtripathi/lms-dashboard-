@@ -60,9 +60,10 @@ const employee=mongoose.model('employee',{
     password:String,
     emptype:String,
     owntype:String,
+    profileImage:String,
     contact:String,
     gender:String,
-
+    
 });
 
 // create model for leave
@@ -94,10 +95,11 @@ const department = mongoose.model('department',{
     description:String
 });
 //employee api
-app.post('/employee',async(req,res)=>{
+app.post('/employee',upload.single('profileImage'),async(req,res)=>{
     const{firstname,lastname,email,password,emptype,owntype,contact,gender}=req.body;
     try{
-     const  newEmployee=new employee({firstname,lastname,email,password,emptype,owntype,contact,gender});
+        const imagepath=req.file?req.file.path:'';
+     const  newEmployee=new employee({firstname,lastname,email,password,emptype,owntype,contact,gender,profileImage:imagepath});
      await newEmployee.save();
      res.json({message:'employee added success'});
     }

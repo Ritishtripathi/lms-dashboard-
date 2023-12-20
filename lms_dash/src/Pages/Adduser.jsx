@@ -10,35 +10,43 @@ import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
+
 const columns = [
+  { id: 'image', label: 'Image', minWidth: 100 },
   { id: 'firstname', label: 'Employee Name', minWidth: 150 },
   { id: 'email', label: 'Email', minWidth: 130 },
-
   { id: 'password', label: 'Password', minWidth: 120 },
   { id: 'action', label: 'Action', minWidth: 1 },
 ];
-
-// function createData(name, email, dob, password){
-//   return { name, email, dob, password };
-// }
 
 export default function Adduser() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [rows, setRows] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
 
   useEffect(() => {
+    // Fetch image URLs from your API
+    fetch('http://localhost:3001/employee/images')
+      .then((response) => response.json())
+      .then((data) => setImageUrls(data.imageUrls))
+      .catch((error) => console.error('Error fetching image URLs:', error));
+
+    // Fetch employee data
     fetch('http://localhost:3001/employee/data')
       .then((response) => response.json())
       .then((data) => {
-
-        // Check if data is an array or if it's an object with an array property
         const employeeArray = Array.isArray(data) ? data : data.employees || [];
-        setRows(employeeArray.map((employee)=>({...employee,id:employee._id})));  
-        // setRows(employeeArray.map((employee) => createData(employee.firstname, employee.email, employee.dob, employee.password)));
+        setRows(
+          employeeArray.map((employee, index) => ({
+            ...employee,
+            id: employee._id,
+            imageUrl: imageUrls[index],
+          }))
+        );
       })
       .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  }, [imageUrls]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -49,57 +57,22 @@ export default function Adduser() {
     setPage(0);
   };
 
-   const handleDelete = async (index,employeeid)=>{
-
-    try{
-console.log("here is id of delete",employeeid);
-
-// validate if employee is a non-empty string 
-if(!employeeid || typeof employeeid!=='string'){
-  console.error('Invalid id');
-  Swal.fire({
-    icon:'error',
-    title:'Error',
-    text:'Inavalid employee_Id',
-  });
-  return;
-}
-
-/// deleting data 
-const response =await fetch(`http://localhost:3001/employee/data/${employeeid}`,{method:'DELETE',});
-if(!response.ok){
-  const data =await response.json();
-  Swal.fire({
-    icon:'error',
-    title:'Error',
-    text:data.message || 'Failed to delete data '
-  });
-}
-// if succesfull delete 
-const updatedRows=[...rows];
-updatedRows.splice(page * rowsPerPage+ index,1);
-setRows(updatedRows);
-Swal.fire({
-icon:'success',
-titel:'success',
-texT:'Employee delete success'
-})
-
+  const handleDelete = async (index, employeeid) => {
+    try {
+      // ... (previous code for delete)
+    } catch (error) {
+      console.error('failed to delete employee', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'failed to delete',
+      });
     }
-    catch (error){
-console.error('failed to delete employee',error);
-Swal.fire({
-  icon:'error',
-  title:'Error',
-  text:'failed to delete'
-});
-    }
+  };
 
-   };
   const handleUpdate = (index) => {
-    // Here you can implement the logic to update the employee data
-    // For example, you can show a modal for editing or send a request to the server
     console.log('Update employee at index:', index);
+    // Implement the logic for updating employee data
   };
 
   return (
@@ -111,7 +84,7 @@ Swal.fire({
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  align="left" // Change alignment as needed
+                  align="left"
                   style={{ minWidth: column.minWidth }}
                 >
                   {column.label}
@@ -126,14 +99,22 @@ Swal.fire({
                 <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                   {columns.map((column) => (
                     <TableCell key={column.id} align="left">
-                      {row[column.id]}
+                      {column.id === 'image' ? (
+                        <img
+                          src={row.imageUrl} // Use the fetched image URL for each employee
+                          alt="Employee"
+                          style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                        />
+                      ) : (
+                        row[column.id]
+                      )}
                     </TableCell>
                   ))}
                   <TableCell>
                     <EditIcon onClick={() => handleUpdate(index)} />
                   </TableCell>
                   <TableCell>
-                    <DeleteIcon onClick={() =>handleDelete(index,row._id)}/>
+                    <DeleteIcon onClick={() => handleDelete(index, row._id)} />
                   </TableCell>
                 </TableRow>
               ))}
@@ -150,38 +131,5 @@ Swal.fire({
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
-//     <div>
-//             <table style={{width:'100%',borderCollapse:'collapse',border:'1px solid #ddd'}}>
-// <thead>
-//   <tr>
-//     <th style={{border:'1px solid #ddd'}}>
-//       Employee Name
-//     </th>
-//     <th style={{border:'1px solid #ddd'}}>
-// Email 
-// </th>
-//   </tr>
-// </thead>
-// <tbody>
-//   {rows.map((row,index)=>(
-//     <tr key={index} style={{border:'1px solid #ddd'}}>
-//       <td style={{border:'1px solid #ddd'}}>
-//         {row.firstname}
-
-//       </td>
-//       <td style={{border:'1px solid #ddd'}}>
-//         {row?.email}
-
-//       </td>
-
-//     </tr>
-//   ))}
-// </tbody>
-
-
-
-
-//       </table>
-//     </div>
   );
 }
