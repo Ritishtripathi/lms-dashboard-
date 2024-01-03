@@ -66,6 +66,17 @@ const employee=mongoose.model('employee',{
     
 });
 
+//client model 
+const client=mongoose.model('client',{
+    firstname:String,
+    lastname:String,
+    email:String,
+    password:String,
+    contact:String,
+    gender:String,
+    
+});
+
 // create model for leave
 const leave=mongoose.model('leave',{
     leavetype:String,
@@ -105,6 +116,22 @@ app.post('/employee',upload.single('profileImage'),async(req,res)=>{
     }
     catch(error){
      console.error('error duringg add employees',error);
+     res.json(500).json({message:'interwalserver error'});
+    }
+});
+
+
+//clieent post api
+
+app.post('/client',async(req,res)=>{
+    const{firstname,lastname,email,password,contact,gender}=req.body;
+    try{
+     const  clients=new client({firstname,lastname,email,password,contact,gender});
+     await clients.save();
+     res.json({message:'added success'});
+    }
+    catch(error){
+     console.error('error duringg add',error);
      res.json(500).json({message:'interwalserver error'});
     }
 });
@@ -224,6 +251,20 @@ app.get('/leave/data',async(req,res)=>{
     }
 });
 
+//client data get api
+
+app.get('/client/data',async(req,res)=>{
+    try{
+     const clients=await client.find();
+     res.json({clients});
+    }
+    catch(error){
+        console.error('error during fetch data',error);
+        res.status(500).json({message:'innterwal  error'});
+    }
+});
+
+
  //Holiday data code get
  app.get('/holiday/data',async (req,res)=>{
     try{
@@ -236,7 +277,19 @@ app.get('/leave/data',async(req,res)=>{
     }
  })
 
+//show data of users
 
+app.get('/user/data',async(req,res)=>{
+    try{
+       const users=await User.find();
+       res.json({users});
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({message:'interwal error!'});
+
+    }
+})
 
 //department data get api
 
@@ -272,6 +325,28 @@ return res.status(404).json({message:'Employee not found'});
          console.error(error);
     }
 });
+
+//delete api of client data
+
+app.delete('/client/data/:id',async (req,res)=>{
+    try
+    {
+        const clientid=req.params.id;
+        if(!mongoose.Types.ObjectId.isValid(clientid)){
+            return res.status(400).json({message:'Invalid id'});
+        }
+        const deleteclient=await employee.findByIdAndDelete(clientid);
+        if (!deleteclient){
+         return res.status(404).json({message:'  not found'});
+        }
+        res.json({message:'deleted successfully'});
+
+    }
+    catch (error){
+         console.error(error);
+    }
+});
+
 
 //Delete api of Department data
 

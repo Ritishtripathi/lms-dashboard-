@@ -8,26 +8,31 @@ import {Link, useNavigate } from "react-router-dom";
 
 import axios from 'axios';
 import Swal from 'sweetalert2';
+
 const  Login=()=>{
   //login field require
-    const [FormData,setFormtData]=
-    useState({
+    const [data,setFormtData]=useState({
       email:'',
       password:''
     })
   const Navigate=useNavigate();
    const Change=(e)=>{
     const {name,value}=e.target;
-    setFormtData({...FormData,[name]:value});
+    setFormtData({...data,[name]:value});
    }
 // call api 
 
 const Loginsubmit=async (e)=>{
   e.preventDefault();
   try{
-const response =await axios.post('http://localhost:3001/login',FormData);
+const response =await axios.post('http://localhost:3001/login',data);
 if(response && response.data){
   console.log("reasponse data",response);
+
+  localStorage.setItem('data',JSON.stringify(data));    
+
+  console.log("localstorage",localStorage);
+
   Swal.fire({
     icon:'success',
     titel:'success',
@@ -50,7 +55,7 @@ else{
     }
 };
     return(
-           <div className="container">
+        <div className="container">
             <div className='main'>
                 <img src={pagepic} className="pageimg"/>
             </div>
@@ -59,9 +64,9 @@ else{
                 <span className="heding">Login to your dashboard</span>
                 <form className="loginform" onSubmit={Loginsubmit}>
                     <label>Email</label>
-                    <label><input type="email"  placeholder='enter email'  className="inputlogin" name='email' value={FormData.email} onChange={Change}/></label>
+                    <label><input type="email"  placeholder='enter email'  className="inputlogin" name='email' value={data.email} onChange={Change}/></label>
                     <label>Password</label>
-                    <label><input type="password" placeholder='enter password' className="inputlogin" name='password' value={FormData.password} onChange={Change}/>
+                    <label><input type="password" placeholder='enter password' className="inputlogin" name='password' value={data.password} onChange={Change}/>
                     </label><br/>
                     
                     <label><button className="buttonlogin" type='submit'>Login </button></label><br/>
@@ -74,6 +79,7 @@ else{
                 <span className="copyright">Copyright @ 2023 by Ritish Tripathi.</span>
             </div>
            </div>
+
     );
 }
 export default Login;

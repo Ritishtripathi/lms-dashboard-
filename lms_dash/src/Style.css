@@ -93,16 +93,15 @@
 
 .header-logo{
     height:10vh;
-    width:310px;
-   
-    
+    width:20vw;  
+    margin-left:5px; 
 }
 .header-item{
  margin-left:3vw;
  margin-top:10px;
 }
 .header-item2{
-  margin-right:52vw;
+  margin-right:48vw;
   margin-top:10px;
 }
 
@@ -272,6 +271,7 @@ border-radius:5px;
         border:none;
         border:1px solid blueviolet;
         margin-left:10vw;
+        outline: none;
    
       }
       .add-employee-btn{
@@ -284,6 +284,7 @@ border-radius:5px;
         margin-left:13vw;
         border-radius:5px;
         border:1px solid blueviolet;
+        outline: none;
       }
       .search-bar-leave1{
         height:6vh;
@@ -291,6 +292,7 @@ border-radius:5px;
         margin-left:9vw;
         border-radius:15px;
         border:1px solid blueviolet;
+        outline: none;
       }
       .pdf-btn{
         background-color: blue;

@@ -18,6 +18,7 @@ import Leavesdata from './Pages/Leavesdata';
 import Departmentdata from './Pages/Departmentdata';
 import Holidaydata from './Pages/Holidaydata';
 import Clients from './Pages/Clients';
+import Clientdata from './Pages/Clientdata';
 function App() {
   return (
     <Router>
@@ -40,6 +41,7 @@ function App() {
         <Route path=' Departmentdata' element={< Departmentdata/>}/>
         <Route path='/Holidaydata' element={<Holidaydata/>}/>
         <Route path='/clients' element={<Clients/>}/>
+        <Route path='/Clientdata' element={<Clientdata/>}/>
 
        </Routes>
     </Router>

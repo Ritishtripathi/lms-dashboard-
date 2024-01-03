@@ -14,7 +14,7 @@ function Sidebar(){
       <li><span className="icon-sidebar"><SpaceDashboardIcon style={{fontSize:'4vh'}}/></span><Link to="/Dashbord" className="link-sidebar">Dashboard</Link></li><br/>
       <li><span className="icon-sidebar"><PeopleOutlineIcon style={{fontSize:'4vh'}}/></span><Link to="/Employee" className="link-sidebar">Employee</Link></li><br/>
       <li><span className="icon-sidebar"><CalendarMonthIcon style={{fontSize:'4vh'}}/></span><Link to="/Leave" className="link-sidebar"> Leave</Link></li><br/>
-      <li><span className="icon-sidebar"><CalendarMonthIcon style={{fontSize:'4vh'}}/></span><Link to="/clients" className="link-sidebar"> Clients</Link></li><br/>
+      <li><span className="icon-sidebar"><PeopleOutlineIcon style={{fontSize:'4vh'}}/></span><Link to="/clients" className="link-sidebar"> Clients</Link></li><br/>
 
       <li><span className="icon-sidebar"><LeaderboardIcon style={{fontSize:'4vh'}}/></span> Administration<br/><br/>
       <ul type='circle'>
@@ -23,12 +23,12 @@ function Sidebar(){
       </ul>
       </li><br/>
       <li><span className="icon-sidebar"><SettingsIcon style={{fontSize:'4vh'}}/></span> Setting<br/><br/>
-      <ul type='circle'>
+      {/* <ul type='circle'>
         <li style={{marginLeft:'3vw'}}><Link to="/" className="link-sidebar" >My firm</Link></li>
         <li style={{marginLeft:'3vw'}}><Link to="/" className="link-sidebar">Lookup Head</Link></li>
         <li style={{marginLeft:'3vw'}}><Link to="/" className="link-sidebar">Reports</Link></li>
-      </ul>
-      </li><br/>
+      </ul> */}
+      </li>
       <li><span className="icon-sidebar"><LogoutIcon style={{fontSize:'4vh'}}/></span><Link to="/Login" className="link-sidebar">Logout</Link></li><br/>
       </ul>
       </div>

@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
 const columns = [
   { id: 'departmentname', label: 'Department Name', minWidth: 150 },
   { id: 'manager', label: 'Manager', minWidth: 130 },
-
   { id: 'description', label: 'Description', minWidth: 120 },
   { id: 'action', label: 'Action', minWidth: 1 },
 ];
