@@ -29,7 +29,7 @@ const response =await axios.post('http://localhost:3001/login',data);
 if(response && response.data){
   console.log("reasponse data",response);
 
-  localStorage.setItem('data',JSON.stringify(data));    
+  localStorage.setItem('data',JSON.stringify(response.data.user));    
 
   console.log("localstorage",localStorage);
 

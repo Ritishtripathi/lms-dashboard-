@@ -2,6 +2,7 @@ const express=require('express');
 const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
 const cors=require('cors');
+const jwt=require('jsonwebtoken');
 const multer =require('multer');
 const path =require ('path');
 
@@ -105,6 +106,23 @@ const department = mongoose.model('department',{
     manager:String,
     description:String
 });
+
+
+// middleware for authentcation 
+const authenticateToken= (req,res,next)=>{
+    const token =req.header('Authorization');
+    if(!token) return res.status(401).json({message:'Access is Denied No token provided.'});
+
+    jwt.verify(token.split('')[1],'your_secret_key',(err,)=>{
+        if(err) return res.status(403).json({message:'Invalid Token'})
+        req.user=user;
+    next();
+
+    });
+};
+
+
+
 //employee api
 app.post('/employee',upload.single('profileImage'),async(req,res)=>{
     const{firstname,lastname,email,password,emptype,owntype,contact,gender}=req.body;
@@ -161,11 +179,16 @@ const {email,password}=req.body;
 try{
   const user=await User.findOne({email});
   if(!user || user.password!==password){
-    return res.status(401).json({message:
-   'invalid email or password' });
+    return res.status(401).json({message:'invalid email or password' });
   }
 
-res.json({message:'Login successfull',user})
+  else{ 
+    // Gentare JWT Token 
+         const token=jwt.sign({userId:user._id,email:user.email},'your sectre_key',{expiresIn:'2s'});
+        
+         res.status(200).json({Message:"Login Succesfull",token,user});
+    
+        }
 
 }
 catch (error){
@@ -406,3 +429,11 @@ app.delete('/leave/data/:id',async(req,res)=>{
      res.status(500).json({message:'error  during delete data'});
     }
 });
+
+
+
+// Protect Route Examplle 
+app.get('/protected-route',authenticateToken,(req,res)=>{
+    res.json({Message:"This is Protected Rpute ",user:req.user});
+});
+
