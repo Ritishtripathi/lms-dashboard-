@@ -9,7 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 function Header(){
 
-  const storedata =localStorage.getItem('data');
+  const storedata =  localStorage.getItem('data');
   const data=storedata ? JSON.parse(storedata): null;
   console.log("GETDATA BY LOCALSTORAGE",data);
   const name=data.name;
