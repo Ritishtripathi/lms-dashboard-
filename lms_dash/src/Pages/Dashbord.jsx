@@ -56,7 +56,7 @@ function Dashbord(){
           <div style={{display:'flex'}}>
            <div className='models-dashbord'>
             <div style={{display:'flex',marginLeft:'2vw'}}>
-             <h5 style={{marginRight:'25vw'}}>Admin Statistics</h5>
+             <h5 style={{marginRight:'22vw'}}>Admin Statistics</h5>
              <button className='card-button'>Today</button>
              <button className='card-button'>This week</button>
              <button className='card-button'>This year</button>
@@ -68,14 +68,14 @@ function Dashbord(){
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
           <span className='card-text-dashbord1'><h6>REPLACEMENT</h6>Employee On Leave<br/>Employee On Request</span>
-          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+          <span style={{marginLeft:'3vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div>
             {/*admin static card */}
          <div className='card-dashbord1'>
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
           <span className='card-text-dashbord1'><h6>ANNUAL_LEAVE</h6>Employee On Leave <br/>Employee On Requests</span>
-          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+          <span style={{marginLeft:'3vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div></div>
         
          
@@ -85,21 +85,21 @@ function Dashbord(){
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
           <span className='card-text-dashbord1'><h6>SICK_LEAVE</h6> Employee On Leave <br/>Employee On Requests</span>
-          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+          <span style={{marginLeft:'3vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div>
           {/*admin static card */}
           <div className='card-dashbord1'>
            <span className="icon-dashbord1">
           <PersonRemoveIcon style={{fontSize:'6vh'}}/></span>
           <span className='card-text-dashbord1'><h6>EMERGENCY_LEAVE</h6>Employee On Leave<br/>Employee On Requests</span>
-          <span style={{marginLeft:'5vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
+          <span style={{marginLeft:'3vw',marginTop:'5vh'}}><h5>0</h5><h5>0</h5></span>
          </div>
          </div>
            </div>  
 
            {/*  deshbord people on week of card */}     
            <div className='card-of-last'>
-             <h5 style={{margin:'3vh 3vw'}}>People On Weekoff</h5><hr style={{color:'grey'}}/>
+             <h5 style={{margin:'3vh 2vw'}}>People On Weekoff</h5><hr style={{color:'grey'}}/>
              <button className='btn-dashbord'>Full<br/> Name</button>
              <button className='btn-dashbord'>From<br/> Date</button>
              <button className='btn-dashbord'>To<br/> Date</button>

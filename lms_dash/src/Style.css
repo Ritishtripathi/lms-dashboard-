@@ -93,8 +93,7 @@
 
 .header-logo{
     height:10vh;
-    width:20vw;  
-    margin-left:5px; 
+    width:280px;  
 }
 .header-item{
  margin-left:3vw;
@@ -104,7 +103,6 @@
   margin-right:48vw;
   margin-top:10px;
 }
-
 .link-header{
     text-decoration:none;
     color:rgb(90, 89, 89);
@@ -171,7 +169,7 @@ border-radius:5px;
 }
 .card-dashbord{
     height:20vh;
-    width:18vw;
+    width:17vw;
     border-radius:5px;
     background:whitesmoke;
     padding-top:5vh;

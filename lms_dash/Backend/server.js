@@ -50,7 +50,10 @@ const User=mongoose.model('User',{
     date:String,
     address:String,
     password:String,
-    profileImage:String
+    profileImage:String,
+    RoleType:String,
+    Active:String 
+
   
 });
 /// employee model
@@ -158,11 +161,11 @@ app.post('/client',async(req,res)=>{
 // signup api
 
 app.post('/signup', upload.single('profileImage'),async(req,res)=>{
-    const {name,email,date,address,password}=req.body;
+    const {name,email,date,address,password,RoleType,Active}=req.body;
     try{
         const profileImagepath=req.file?req.file.path:'';
 
-const newUser=new User({name,email,date,address,password,
+const newUser=new User({name,email,date,address,password,RoleType,Active,
     profileImage:profileImagepath});
 await newUser.save();
 res.json({message:'Signup successFull'});
@@ -172,13 +175,14 @@ console.error('Error during Signup',error);
 res.status(500).json({message:'Interval server error'});
     }
 });
+
 // Login Api 
 
 app.post('/login',async(req,res)=>{
 const {email,password}=req.body;
 try{
   const user=await User.findOne({email});
-  if(!user || user.password!==password){
+  if(!user || user.password!==password || user.Active=="false"){
     return res.status(401).json({message:'invalid email or password' });
   }
 
@@ -259,6 +263,20 @@ res.json({employees});
 console.error('Error during employee getting',error);
 res.status(500).json({message:'Interval server error'});
     }
+});
+
+//get data of users
+
+app.get('/user/data',async(req,res)=>{
+    try{
+     const Users= await User.find();
+     res.json({Users});
+     
+    }
+    catch(error){
+        console.error(error);
+        res.status(404).json({message:'data not found'});
+    }
 })
 
 //get data of leave
@@ -328,6 +346,25 @@ app.get('/department/data',async(req,res)=>{
     }
 });
 
+/// DELETE API FOR USERS
+app.delete('/user/data/:id',async (req,res)=>{
+    try
+    {
+        const Userid=req.params.id;
+        if(!mongoose.Types.ObjectId.isValid(Userid)){
+            return res.status(400).json({message:'Invalid id'});
+        }
+        const deleteUser=await employee.findByIdAndDelete(Userid);
+        if (!deleteUser){
+        return res.status(404).json({message:'User not found'});
+        }
+        res.json({message:'deleted successfully'});
+
+    }
+    catch (error){
+         console.error(error);
+    }
+});
 
 /// DELETE API FOR EMPLOYEE 
 app.delete('/employee/data/:id',async (req,res)=>{
@@ -339,7 +376,7 @@ app.delete('/employee/data/:id',async (req,res)=>{
         }
         const deleteemployee=await employee.findByIdAndDelete(employeeid);
         if (!deleteemployee){
-return res.status(404).json({message:'Employee not found'});
+        return res.status(404).json({message:'Employee not found'});
         }
         res.json({message:'Employee deleted successfully'});
 

@@ -15,7 +15,9 @@ useState({
     date:'',
     address:'',
     password:'',
-    profileImage:null
+    profileImage:null,
+    RoleType:'',
+    Active:'false'
     
 });
 const Navigate=useNavigate();
@@ -85,6 +87,14 @@ else{
                     <label>Password</label>
                     <label><input type="password" name='password'value={formData.password} onChange={hanlechange} placeholder='enter password' className="inputlogin" />
                     </label><br/>
+                    <label>
+                        RoleTypes
+                    </label>
+                    <select  name='RoleType' value={formData.RoleType} onChange={hanlechange} >
+                        <option value="1" >Admin</option>
+                        <option value="0" >Super Admin</option>
+                    </select>
+                    
                     <label>Profile Image</label>
                     <label>
                         <input  type='file' name="profileImage"

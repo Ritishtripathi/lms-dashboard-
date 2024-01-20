@@ -23,11 +23,9 @@ function Sidebar(){
       </ul>
       </li><br/>
       <li><span className="icon-sidebar"><SettingsIcon style={{fontSize:'4vh'}}/></span> Setting<br/><br/>
-      {/* <ul type='circle'>
-        <li style={{marginLeft:'3vw'}}><Link to="/" className="link-sidebar" >My firm</Link></li>
-        <li style={{marginLeft:'3vw'}}><Link to="/" className="link-sidebar">Lookup Head</Link></li>
-        <li style={{marginLeft:'3vw'}}><Link to="/" className="link-sidebar">Reports</Link></li>
-      </ul> */}
+      <ul type='circle'>
+        <li style={{marginLeft:'3vw'}}><Link to="/Management" className="link-sidebar" >Management</Link></li>
+      </ul> 
       </li>
       <li><span className="icon-sidebar"><LogoutIcon style={{fontSize:'4vh'}}/></span><Link to="/Login" className="link-sidebar">Logout</Link></li><br/>
       </ul>
