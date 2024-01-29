@@ -45,15 +45,18 @@ if(response && response.data){
 }
     }
 catch (error){
+  alert('Invailid email or password !')
 console.error('error durinng signnup',error);
 if(error.response && error.response.data){
     console.error('Error details:',error.response.data);
 }
 else{
    console.log('Unexpecte error'); 
+   
 }
     }
 };
+
     return(
         <div className="container">
             <div className='main'>

@@ -15,33 +15,21 @@ useState({
     date:'',
     address:'',
     password:'',
-    profileImage:null,
-    RoleType:'',
     Active:'false'
     
 });
 const Navigate=useNavigate();
 
 const  hanlechange=(e)=>{
-const {name,value,files,type}=e.target;
-if(type==='file'){
-    setFormtData({...formData,[name]:files[0]});
-}
+const {name,value}=e.target;
+setFormtData({...formData,[name]:value})
 
-else{
-setFormtData({...formData,[name]:value});
-}
 };
 const signupsubmit=async (e)=>{
     e.preventDefault();
     try{
-
-        const formDataForApi=new FormData();
-        for (const key in formData){
-            formDataForApi.append(key,formData[key]);
-        }
 // api call 
-const response = await axios.post('http://localhost:3001/signup',formDataForApi);
+const response = await axios.post('http://localhost:3001/signup',formData);
 if(response && response.data){
     console.log(response.data);
     Swal.fire({
@@ -87,7 +75,7 @@ else{
                     <label>Password</label>
                     <label><input type="password" name='password'value={formData.password} onChange={hanlechange} placeholder='enter password' className="inputlogin" />
                     </label><br/>
-                    <label>
+                    {/* <label>
                         RoleTypes
                     </label>
                     <select  name='RoleType' value={formData.RoleType} onChange={hanlechange} >
@@ -99,7 +87,7 @@ else{
                     <label>
                         <input  type='file' name="profileImage"
                         onChange={hanlechange} accept='image/*' className='inpulogin'  />
-                    </label>
+                    </label> */}
                    
                     <label><button type='submit' className="buttonlogin">Signup</button></label><br/>
                 </form><br></br>

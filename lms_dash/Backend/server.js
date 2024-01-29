@@ -5,6 +5,7 @@ const cors=require('cors');
 const jwt=require('jsonwebtoken');
 const multer =require('multer');
 const path =require ('path');
+const { TramRounded } = require('@mui/icons-material');
 
 // set up  uploaded images
 const storage = multer.diskStorage({
@@ -50,8 +51,6 @@ const User=mongoose.model('User',{
     date:String,
     address:String,
     password:String,
-    profileImage:String,
-    RoleType:String,
     Active:String 
 
   
@@ -160,13 +159,12 @@ app.post('/client',async(req,res)=>{
 
 // signup api
 
-app.post('/signup', upload.single('profileImage'),async(req,res)=>{
-    const {name,email,date,address,password,RoleType,Active}=req.body;
+app.post('/signup',async(req,res)=>{
+    const {name,email,date,address,password,Active}=req.body;
     try{
-        const profileImagepath=req.file?req.file.path:'';
+       
 
-const newUser=new User({name,email,date,address,password,RoleType,Active,
-    profileImage:profileImagepath});
+const newUser=new User({name,email,date,address,password,Active});
 await newUser.save();
 res.json({message:'Signup successFull'});
     }
@@ -466,6 +464,51 @@ app.delete('/leave/data/:id',async(req,res)=>{
      res.status(500).json({message:'error  during delete data'});
     }
 });
+
+
+// edit api 
+app.get('/oneuser/:id',async (req,res)=>{
+try{
+    const id = req.params.id ;
+    const data=await employee.findById({_id:id})
+res.status(200).json({data})
+
+}
+catch (error){
+res.status(500).json({message:"server error"});
+
+}
+})
+
+// update one data 
+
+app.put("/oneuser/:id",async (req,res)=>{
+    const Userid=req.params.id;
+    try{
+        const update=await employee.findByIdAndUpdate(
+            Userid ,{
+       firstname:req.body.firstname,
+       lastname:req.body.lastname,
+       email:req.body.email,
+       password:req.body.password,
+       emptype:req.body.emptype,
+       owntype:req.body.owntype,
+       profileImage:req.body.profileImage,
+       contact:req.body.contact,
+       gender:req.body.gender
+
+            },
+            {new: true}
+        );
+        res.status(200).json({message:"Update successfull",user:update});
+    }
+    catch (error){
+        res.status(500).json({message:"interver server erorr" ,success:false});
+    }
+    
+});
+
+
 
 
 
